@@ -1,0 +1,40 @@
+<div class="section-light-gray">
+  <div class="container" style="padding:25px ">
+    <div class="row">
+      <table class="table table-bordered table-active" >
+          <thead class="thead-dark">
+                  <tr>
+                    <th >Name</th>
+                    <th >ID</th>
+                    <th >Details</th>
+                  </tr> 
+                </thead>
+                <tbody *ngFor="let user of users">
+                    <tr>
+                      <td scope="row"><strong>{{user.first}} {{user.last}}</strong></td>
+                      <td>{{user.id}}</td>
+                      <td> <button type="button" class="btn btn-primary" (click)="selecteduser = user; staticModal.show();">Profile</button></td>
+                    </tr>
+                </tbody>
+             </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+ 
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">User Profile</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <user-card [user]="selecteduser"></user-card>
+    </div>
+  </div>
+</div>
